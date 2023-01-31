@@ -1,0 +1,46 @@
+FROM ruby:3.1.1
+
+RUN apt-get update; apt-get install curl -y
+
+# Register Yarn package source.
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+# Install packages.
+RUN apt-get update -qq
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs
+RUN apt-get install -y postgresql-client postgresql postgresql-contrib yarn wkhtmltopdf imagemagick -y
+
+# RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
+# RUN apt-get install ./wkhtmltox_0.12.6-1.focal_amd64.deb
+
+# put the project in the / directory of the container
+ADD . .
+
+WORKDIR /projects
+
+RUN gem install bundler
+
+RUN gem install rails
+
+# RUN rails new twitter-clone -T --database postgresql
+
+# WORKDIR /twitter-clone
+
+# un-comment this when project files are created
+RUN bundle install
+
+EXPOSE 4500
+
+CMD ["bash"]
+
+# create docker image
+# docker build . -f Dockerfile.dev -t image_tag_name
+
+# run image as container
+# docker run -d -t --name container_instance_name -v /Users/mac/host_folder:/container_dir image_id command
+# example: docker run -dt --name ruby3.1.1_container -v /Users/masroor/docker-data/ruby3.1.1/:/projects ruby3.1.1 bash
+
+# docker-compose build
+# docker-compose up -d
+# docker-compose down
