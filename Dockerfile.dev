@@ -45,3 +45,9 @@ CMD ["bash"]
 # docker-compose up -d
 # docker-compose restart
 # docker-compose down
+
+
+# mysql user creation for the database
+# login as root, password is the one that you give to the mysql container
+# mysql -u root -h localhost -p
+#CREATE USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';

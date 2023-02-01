@@ -23,7 +23,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'main'
   gem "pry-rails"
-  gem "rspec-rails", "~> 5.1", ">= 5.1.2"
+  gem 'rspec-rails', '~> 6.0.0'
 end
 
 group :development do
@@ -37,4 +37,3 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
