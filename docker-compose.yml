@@ -33,7 +33,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: bash -c "rm -f tmp/pids/service.pid && cd /projects/twitter-clone && printenv && rails s -p 4500 -b '0.0.0.0'"
+    # command: bash -c "rm -f tmp/pids/service.pid && cd /projects/twitter-clone && printenv && rails s -p 4500 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/service.pid && cd /projects/twitter-clone && printenv && sleep infinity"
     volumes:
       - /Users/masroor/docker-data/ruby3.1.1/twitter-clone:/projects/twitter-clone
     ports:
