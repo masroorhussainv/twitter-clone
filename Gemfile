@@ -25,12 +25,12 @@ group :development, :test do
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'main'
   gem "pry-rails"
   gem 'rspec-rails', '~> 6.0.0'
+  gem "shoulda-matchers", "~> 5.0"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "shoulda-matchers", "~> 5.0"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
