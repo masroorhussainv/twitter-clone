@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :tweets
+
+  get :dashboard, to: 'dashboard#index'
 end
