@@ -1,0 +1,15 @@
+.btn-twitter {
+  background-color: $twitter-blue;
+  color: white;
+
+  -moz-transition: all .1 ease-in;
+  -o-transition: all .1 ease-in;
+  -webkit-transition: all .1 ease-in;
+  transition: all .1 ease-in;
+  font-weight: 600;
+
+  &:hover {
+    background-color: $twitter-blue-dark;
+    color: white;
+  }
+}
