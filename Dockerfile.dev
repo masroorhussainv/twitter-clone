@@ -17,7 +17,7 @@ RUN apt-get install -y postgresql-client postgresql postgresql-contrib yarn wkht
 # put the project in the / directory of the container
 ADD . .
 
-WORKDIR /projects
+WORKDIR /projects/twitter-clone/
 
 RUN gem install bundler
 
