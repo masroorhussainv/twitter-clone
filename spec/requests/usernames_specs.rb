@@ -20,6 +20,7 @@ RSpec.describe "Usernames", type: :request do
             user: { username: 'foobar' }
           }
         end.to change { user.reload.username }.from(nil).to('foorbar')
+        expect(user.reload.display_name).to eq('Foobar')
         expect(response).to redirect_to(:dashboard_path)
       end
     end

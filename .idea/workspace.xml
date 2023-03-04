@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88d0c910-108a-4350-86f9-975800378afd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/tweets/create.turbo_stream.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile.dev" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile.dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tweets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tweets_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/dashboard/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/dashboard/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/shared/_tweet_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_tweet_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/usernames_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/usernames_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/usernames/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/usernames/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/models/user_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/user_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/usernames_specs.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/usernames_specs.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +287,8 @@
       <workItem from="1677696707146" duration="694000" />
       <workItem from="1677698685623" duration="1748000" />
       <workItem from="1677769908360" duration="293000" />
-      <workItem from="1677853304500" duration="830000" />
+      <workItem from="1677853304500" duration="1664000" />
+      <workItem from="1677932276970" duration="3264000" />
     </task>
     <servers />
   </component>
