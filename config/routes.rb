@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "home#index"
 
-  resources :tweets
+  resources :tweets, only: %i(create) do
+    resources :likes, only: %i(create destroy)
+  end
 
   get :dashboard, to: 'dashboard#index'
   resources :usernames, only: %i(new update)
