@@ -28,8 +28,8 @@
     <%= link_to tweet_presenter.tweet_like_url, data: { 'turbo-method': tweet_presenter.turbo_data_method }, class: 'text-decoration-none text-black action-link likes', remote: true do %>
       <div><i class="<%= tweet_presenter.like_heart_image %> me-1"></i> <span> <%= tweet_presenter.likes_count %> </span></div>
     <% end %>
-    <%= link_to "#", class: 'text-decoration-none text-black action-link likes' do %>
-      <div><i class="bi bi-bookmark me-1"></i> <span>Bookmark</span></div>
+    <%= link_to tweet_presenter.tweet_bookmark_url, data: { 'turbo-method': tweet_presenter.bookmark_turbo_method },  class: 'text-decoration-none text-black action-link likes' do %>
+      <div><i class="<%= tweet_presenter.bookmark_image %> me-1"></i> <span><%= tweet_presenter.bookmark_text %></span></div>
     <% end %>
   </div>
 </div>

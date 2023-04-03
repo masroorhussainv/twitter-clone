@@ -1,0 +1,5 @@
+<% if @tweet %>
+  <%= turbo_stream.replace dom_id(@tweet) do %>
+    <%= render 'tweets/tweet', tweet_presenter: TweetPresenter.new(@tweet, current_user: current_user) %>
+  <% end %>
+<% end %>

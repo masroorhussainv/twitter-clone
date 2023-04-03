@@ -45,7 +45,43 @@ class TweetPresenter
     end
   end
 
+  def tweet_bookmark_url
+    if tweet_bookmarked_by_current_user?
+      tweet_bookmark_path(tweet, current_user.bookmarks.find_by(tweet_id: tweet.id))
+    else
+      tweet_bookmarks_path(tweet)
+    end
+  end
+
+  def bookmark_image
+    if tweet_bookmarked_by_current_user?
+      'bi bi-bookmark-fill text-info'
+    else
+      'bi bi-bookmark'
+    end
+  end
+
+  def bookmark_text
+    if tweet_bookmarked_by_current_user?
+      'Bookmarked'
+    else
+      'Bookmark'
+    end
+  end
+
+  def bookmark_turbo_method
+    if tweet_bookmarked_by_current_user?
+      'delete'
+    else
+      'post'
+    end
+  end
+
   def tweet_liked_by_user?
     @tweet_liked_by_current_user ||= tweet.liked_users.include?(current_user)
+  end
+
+  def tweet_bookmarked_by_current_user?
+    @tweet_bookmarked_by_current_user ||= tweet.bookmarked_users.include?(current_user)
   end
 end
