@@ -5,7 +5,7 @@ class TweetPresenter
 
   attr_reader :tweet, :current_user
 
-  delegate :user, :body, :likes, :likes_count, to: :tweet
+  delegate :user, :body, :likes, :likes_count, :retweets_count, to: :tweet
   delegate :display_name, :username, :avatar, to: :user
 
   def initialize(tweet, current_user:)
@@ -77,11 +77,41 @@ class TweetPresenter
     end
   end
 
-  def tweet_liked_by_user?
-    @tweet_liked_by_current_user ||= tweet.liked_users.include?(current_user)
+  def retweet_url
+    if tweet_retweeted_by_current_user?
+      tweet_retweet_path(tweet, current_user.retweets.find_by(tweet_id: tweet.id))
+    else
+      tweet_retweets_path(tweet)
+    end
   end
 
-  def tweet_bookmarked_by_current_user?
-    @tweet_bookmarked_by_current_user ||= tweet.bookmarked_users.include?(current_user)
+  def retweet_image
+    if tweet_retweeted_by_current_user?
+      'bi bi-repeat text-info'
+    else
+      'bi bi-repeat'
+    end
   end
+
+  def retweet_turbo_method
+    if tweet_retweeted_by_current_user?
+      'delete'
+    else
+      'post'
+    end
+  end
+
+  private
+
+    def tweet_liked_by_user?
+      @tweet_liked_by_current_user ||= tweet.liked_users.include?(current_user)
+    end
+
+    def tweet_bookmarked_by_current_user?
+      @tweet_bookmarked_by_current_user ||= tweet.bookmarked_users.include?(current_user)
+    end
+
+    def tweet_retweeted_by_current_user?
+      @tweet_retweeted_by_current_user ||= tweet.retweeted_users.include?(current_user)
+    end
 end
