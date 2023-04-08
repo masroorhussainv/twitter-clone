@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "home#index"
 
-  resources :tweets, only: %i(create) do
+  resources :tweets, only: %i(create show) do
     resources :likes, only: %i(create destroy)
     resources :bookmarks, only: %i(create destroy)
     resources :retweets, only: %i(create destroy)

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Tweets", type: :request do
+
   describe "POST create" do
     context "when not signed in" do
       it "it responds with a redirect" do
@@ -20,6 +21,16 @@ RSpec.describe "Tweets", type: :request do
         end.to change { Tweet.count }.by 1
         expect(response).to redirect_to(dashboard_path)
       end
+    end
+  end
+
+  describe "GET show" do
+    it "shows the tweet" do
+      user = create(:user)
+      sign_in user
+      tweet = create(:tweet)
+      get tweet_path(tweet)
+      expect(response).to have_http_status(:success)
     end
   end
 end
