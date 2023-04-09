@@ -30,6 +30,7 @@ RSpec.describe "Tweets", type: :request do
 
     before do
       sign_in user
+      allow(TweetViewLoggerJob).to receive(:perform_later)
     end
 
     it "shows the tweet" do
@@ -38,17 +39,24 @@ RSpec.describe "Tweets", type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it "increments the view count if tweet not viewed" do
-      expect do
-        get tweet_path(tweet)
-      end.to change { user.views.count }.by(1)
+    it "queues up the TweetViewLoggerJob" do
+      get tweet_path(tweet)
+      expect(TweetViewLoggerJob).to have_received(:perform_later).with(user: user, tweet: tweet)
     end
 
-    it "does not increment the view count for already viewed tweet" do
-      create(:view, tweet: tweet, user: user)
-      expect do
-        get tweet_path(tweet)
-      end.not_to change { user.views.count }
-    end
+    # Removed the following after this functionality got moved to a job from controller
+    # it "increments the view count if tweet not viewed" do
+    #   expect do
+    #     get tweet_path(tweet)
+    #   end.to change { user.views.count }.by(1)
+    # end
+    #
+    # it "does not increment the view count for already viewed tweet" do
+    #   create(:view, tweet: tweet, user: user)
+    #   expect do
+    #     get tweet_path(tweet)
+    #   end.not_to change { user.views.count }
+    # end
+
   end
 end

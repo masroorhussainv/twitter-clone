@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
   end
 
   def show
-    TweetViewLogger.new(tweet, current_user).execute
+    TweetViewLoggerJob.perform_later(tweet: tweet, user: current_user)
     @tweet_presenter = TweetPresenter.new(tweet, current_user: current_user)
   end
 
