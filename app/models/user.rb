@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :retweets, dependent: :destroy
   has_many :retweeted_tweets, through: :retweets, source: :tweet
 
+  has_many :views
+  has_many :viewed_tweets, through: :views, source: :tweet
+
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 
   before_save :set_display_name, if: -> { username.present? and display_name.blank? }

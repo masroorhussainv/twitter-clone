@@ -2,8 +2,9 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!
   
   def create
-    @tweet = Tweet.new(tweet_params.merge(user: current_user))
-    if @tweet.save
+    tweet = Tweet.new(tweet_params.merge(user: current_user))
+
+    if tweet.save
       respond_to do |format|
         format.html{ redirect_to dashboard_path }
         format.turbo_stream
@@ -12,10 +13,16 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
+    TweetViewLogger.new(tweet, current_user).execute
+    @tweet_presenter = TweetPresenter.new(tweet, current_user: current_user)
   end
 
   private
+
+  def tweet
+    @tweet ||= Tweet.find(params[:id])
+  end
+
   def tweet_params
     params.require(:tweet).permit(:body)
   end

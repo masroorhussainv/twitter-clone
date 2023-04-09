@@ -11,6 +11,9 @@ RSpec.describe Tweet, type: :model do
   it { should have_many(:retweets).dependent(:destroy) }
   it { should have_many(:retweeted_users).through(:retweets).source(:user)}
 
+  it { should have_many(:views).dependent(:destroy) }
+  it { should have_many(:viewed_tweets).through(:views).source(:tweet) }
+
   # it { should validate_presence_of(:body).is_at_most(280) }
   it { should validate_presence_of(:body) }
 end

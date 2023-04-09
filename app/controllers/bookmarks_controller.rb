@@ -3,6 +3,7 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = current_user.bookmarks.create(tweet: tweet)
+
     respond_to do |format|
       format.html { redirect_to dashboard_path }
       format.turbo_stream

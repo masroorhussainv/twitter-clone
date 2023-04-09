@@ -1,11 +1,23 @@
 <div class="col-7">
-  <%= @tweet.body %>
-  <div class="mb-3">
-    <%= link_to :back, class: "fs-4 text-decoration-none text-black fw-semibold" do %>
-      <i class="bi bi-arrow-left me-4"></i>Tweet
-    <% end %>
+  <div class="tweet">
+    <div class="d-flex py-3 px-3" >
+      <div class="flex-shrink-0">
+        <%= image_tag @tweet_presenter.avatar, size: '48x48', class: 'rounded-circle' %>
+      </div>
+      <div class="flex-grow-1 ms-3">
+        <p class="fw-bolder mb-0"><%= @tweet_presenter.display_name %></p>
+        <p class="text-muted mb-1">@<%= @tweet_presenter.username %></p>
+        <p class='fs-2 mb-1'><%= @tweet_presenter.body %></p>
+        <p class="fs-6 text-muted"><%= @tweet_presenter.created_at_datetime.strftime('%l:%M %p') %> . <%= @tweet_presenter.created_at_datetime.strftime('%b %d, %Y') %></p>
+
+        <div id="turbo-show-stats">
+          <%= render 'tweets/show_stats', tweet_presenter: @tweet_presenter %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
 <div class="col">
   Col3
 </div>

@@ -25,12 +25,30 @@ RSpec.describe "Tweets", type: :request do
   end
 
   describe "GET show" do
-    it "shows the tweet" do
-      user = create(:user)
+    let(:user)  { create(:user)  }
+    let(:tweet) { create(:tweet) }
+
+    before do
       sign_in user
+    end
+
+    it "shows the tweet" do
       tweet = create(:tweet)
       get tweet_path(tweet)
       expect(response).to have_http_status(:success)
+    end
+
+    it "increments the view count if tweet not viewed" do
+      expect do
+        get tweet_path(tweet)
+      end.to change { user.views.count }.by(1)
+    end
+
+    it "does not increment the view count for already viewed tweet" do
+      create(:view, tweet: tweet, user: user)
+      expect do
+        get tweet_path(tweet)
+      end.not_to change { user.views.count }
     end
   end
 end

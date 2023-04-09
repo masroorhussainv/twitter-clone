@@ -2,11 +2,12 @@
 class TweetPresenter
   include ActionView::Helpers::DateHelper
   include Rails.application.routes.url_helpers
+  include ActionView::Helpers::AssetUrlHelper
 
   attr_reader :tweet, :current_user
 
-  delegate :user, :body, :likes, :likes_count, :retweets_count, to: :tweet
-  delegate :display_name, :username, :avatar, to: :user
+  delegate :user, :body, :likes, :likes_count, :retweets_count, :views_count, to: :tweet
+  delegate :display_name, :username, to: :user
 
   def initialize(tweet, current_user:)
     @tweet = tweet
@@ -21,11 +22,21 @@ class TweetPresenter
     end
   end
 
-  def tweet_like_url
+  def avatar
+    return user.avatar if user.avatar.present?
+
+    asset_path('person-64.png')
+  end
+
+  def created_at_datetime
+    tweet.created_at
+  end
+
+  def tweet_like_url(source: 'tweet_card')
     if tweet_liked_by_user?
-      tweet_like_path(tweet, current_user.likes.find_by(tweet_id: tweet.id))
+      tweet_like_path(tweet, current_user.likes.find_by(tweet_id: tweet.id), source: source)
     else
-      tweet_likes_path(tweet)
+      tweet_likes_path(tweet, source: source)
     end
   end
 
@@ -45,11 +56,11 @@ class TweetPresenter
     end
   end
 
-  def tweet_bookmark_url
+  def tweet_bookmark_url(source: 'tweet_card')
     if tweet_bookmarked_by_current_user?
-      tweet_bookmark_path(tweet, current_user.bookmarks.find_by(tweet_id: tweet.id))
+      tweet_bookmark_path(tweet, current_user.bookmarks.find_by(tweet_id: tweet.id), source: source)
     else
-      tweet_bookmarks_path(tweet)
+      tweet_bookmarks_path(tweet, source: source)
     end
   end
 
@@ -77,11 +88,11 @@ class TweetPresenter
     end
   end
 
-  def retweet_url
+  def retweet_url(source: 'tweet_card')
     if tweet_retweeted_by_current_user?
-      tweet_retweet_path(tweet, current_user.retweets.find_by(tweet_id: tweet.id))
+      tweet_retweet_path(tweet, current_user.retweets.find_by(tweet_id: tweet.id), source: source)
     else
-      tweet_retweets_path(tweet)
+      tweet_retweets_path(tweet, source: source)
     end
   end
 
