@@ -1,6 +1,10 @@
 class Tweet < ApplicationRecord
   belongs_to :user
 
+  belongs_to :parent_tweet, foreign_key: :parent_tweet_id, class_name: 'Tweet', optional: true
+
+  has_many :reply_tweets, foreign_key: :parent_tweet_id, class_name: 'Tweet'
+
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 

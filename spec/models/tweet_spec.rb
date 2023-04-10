@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Tweet, type: :model do
   it { should belong_to(:user) }
+
+  it { should belong_to(:parent_tweet).with_foreign_key(:parent_tweet_id).class_name('Tweet').optional }
+
+  it { should have_many(:reply_tweets).with_foreign_key(:parent_tweet_id).class_name('Tweet') }
+
   it { should have_many(:likes).dependent(:destroy) }
   it { should have_many(:liked_users).through(:likes) }
 
