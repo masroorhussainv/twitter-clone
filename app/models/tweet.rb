@@ -1,7 +1,9 @@
 class Tweet < ApplicationRecord
   belongs_to :user
 
-  belongs_to :parent_tweet, foreign_key: :parent_tweet_id, class_name: 'Tweet', optional: true
+  belongs_to :parent_tweet, foreign_key: :parent_tweet_id,
+             class_name: 'Tweet', optional: true,
+             counter_cache: :reply_tweets_count
 
   has_many :reply_tweets, foreign_key: :parent_tweet_id, class_name: 'Tweet'
 

@@ -1,4 +1,8 @@
 <% if @tweet %>
+  <%= turbo_stream.replace 'turbo-show-stats' do %>
+    <%= render 'tweets/show_stats', tweet_presenter: TweetPresenter.new(@tweet.parent_tweet, current_user: current_user.reload) %>
+  <% end %>
+
   <%= turbo_stream.prepend 'reply_tweets' do %>
     <%= render 'tweets/tweet', tweet_presenter: TweetPresenter.new(@tweet.reload, current_user: current_user.reload) %>
   <% end %>

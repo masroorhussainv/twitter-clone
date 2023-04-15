@@ -20,7 +20,7 @@
       <i class="bi bi-bar-chart-fill me-1"></i><%= tweet_presenter.views_count %><span> Views</span>
     <% end %>
     <%= link_to '#', class: 'text-decoration-none text-black action-link replies', data: { 'ignore-clicks': true } do %>
-      <i class="bi bi-chat me-1"></i><span>Replies</span>
+      <i class="bi bi-chat me-1"></i><%= tweet_presenter.reply_tweets_count %>
     <% end %>
     <%= link_to tweet_presenter.retweet_url, data: { 'turbo-method': tweet_presenter.retweet_turbo_method, 'ignore-clicks': true }, class: 'text-decoration-none text-black action-link retweet' do %>
       <i class="<%= tweet_presenter.retweet_image %> me-1"></i><span><%= tweet_presenter.retweets_count %></span>

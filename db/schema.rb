@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_09_155233) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_15_091712) do
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -93,6 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_155233) do
     t.integer "retweets_count", default: 0, null: false
     t.integer "views_count", default: 0, null: false
     t.bigint "parent_tweet_id"
+    t.integer "reply_tweets_count", default: 0, null: false
     t.index ["parent_tweet_id"], name: "index_tweets_on_parent_tweet_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end

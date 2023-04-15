@@ -1,6 +1,7 @@
 <%= turbo_frame_tag dom_id(tweet_presenter.tweet) do %>
   <div class="stats d-flex justify-content-start mb-4">
     <div class="me-4"><%= tweet_presenter.views_count %><span class="fw-bolder"> Views</span></div>
+    <div class="me-4"><%= tweet_presenter.reply_tweets_count %> <span class="fw-bolder"> Replies</span></div>
     <div class="me-4"><%= tweet_presenter.retweets_count %> <span class="fw-bolder"> Retweets</span></div>
     <div class="me-4"><%= tweet_presenter.likes_count %> <span class="fw-bolder"> Likes</span></div>
   </div>
