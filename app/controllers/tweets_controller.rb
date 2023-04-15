@@ -15,6 +15,10 @@ class TweetsController < ApplicationController
   def show
     TweetViewLoggerJob.perform_later(tweet: tweet, user: current_user)
     @tweet_presenter = TweetPresenter.new(tweet, current_user: current_user)
+    @reply_tweets_in_presenter =  tweet.reply_tweets
+                                       .includes(:liked_users, :user, :retweeted_users, :bookmarked_users)
+                                       .descending
+                                       .map{|tweet| TweetPresenter.new(tweet, current_user: current_user) }
   end
 
   private

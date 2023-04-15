@@ -18,4 +18,7 @@ class Tweet < ApplicationRecord
   has_many :viewed_tweets, through: :views, source: :tweet
 
   validates :body, presence: true, length: { maximum: 280 }
+
+  # SCOPES
+  scope :descending, -> { order(created_at: :desc) }
 end

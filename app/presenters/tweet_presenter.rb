@@ -22,10 +22,10 @@ class TweetPresenter
     end
   end
 
-  def avatar
+  def avatar(view_context)
     return user.avatar if user.avatar.present?
 
-    asset_path('person-64.png')
+    view_context.asset_path('person-64.png')
   end
 
   def created_at_datetime

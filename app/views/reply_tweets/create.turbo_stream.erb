@@ -1,0 +1,5 @@
+<% if @tweet %>
+  <%= turbo_stream.prepend 'reply_tweets' do %>
+    <%= render 'tweets/tweet', tweet_presenter: TweetPresenter.new(@tweet.reload, current_user: current_user.reload) %>
+  <% end %>
+<% end %>
